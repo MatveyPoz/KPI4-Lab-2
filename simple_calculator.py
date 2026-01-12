@@ -43,11 +43,11 @@ def HandleKeyPress(state, key):
                 state.screen = state.first_number * state.screen
             elif state.op == "/":
                 state.screen = int(state.first_number / state.screen)
-                # else:
-                # state.screen = state.first_number
             # Reset operation state
             state.op = None
             state.start_second_number = False
+    # else:
+    # state.screen = state.first_number
 
 
 def Calculate(keys):
