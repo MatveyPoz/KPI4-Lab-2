@@ -34,7 +34,6 @@ def HandleKeyPress(state, key):
 
     elif key == "=":
         if state.op is not None:
-            # Performing the operations
             if state.op == "+":
                 state.screen = state.first_number + state.screen
             elif state.op == "-":
@@ -42,12 +41,16 @@ def HandleKeyPress(state, key):
             elif state.op == "*":
                 state.screen = state.first_number * state.screen
             elif state.op == "/":
-                state.screen = int(state.first_number / state.screen)
+                try:
+                    state.screen = int(state.first_number / state.screen)
+                except ZeroDivisionError:
+                    state.screen = 0
             # Reset operation state
             state.op = None
             state.start_second_number = False
-    # else:
-    # state.screen = state.first_number
+    else:
+        state.screen = 0
+        state.first_number = 0
 
 
 def Calculate(keys):

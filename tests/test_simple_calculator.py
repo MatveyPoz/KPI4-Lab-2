@@ -2,6 +2,7 @@ from sre_parse import ASSERT
 
 import pytest
 
+# from _typeshed import SupportsRichComparison
 from simple_calculator import (
     Calculate,
     CalculatorState,
@@ -47,7 +48,7 @@ def test_handle_key_press():
     assert state.start_second_number
     assert state.screen == 7
 
-    # Testing first anf second number
+    # Test first anf second number
     state = CalculatorState()
     HandleKeyPress(state, "1")
     HandleKeyPress(state, "5")
@@ -62,3 +63,33 @@ def test_handle_key_press():
 def test_calculate(monkeypatch):
     monkeypatch.setattr("builtins.input", lambda *args: "1 + 1 = \n")
     assert Calculate(Parse(input().strip())) == 2
+
+    # Test empty input
+    assert Calculate([]) == 0
+
+    # Test invalid input with missing =
+    assert Calculate(["1", "+", "2"]) == 2
+
+    # Test invalid input
+    assert Calculate(["1", "+", "a", "="]) == 0
+
+    # Test invalid input with missing =
+    assert Calculate(["1", "+", "2", "+"]) == 2
+
+    # Test addition
+    assert Calculate(["9", "9", "9", "+", "1", "="]) == 1000
+
+    # Test subsctraction
+    assert Calculate(["6", "7", "8", "-", "78", "="]) == 600
+
+    # Test multiplication
+    assert Calculate(["1", "5", "*", "5", "="]) == 75
+
+    # Test division
+    assert Calculate(["1", "0", "/", "2", "="]) == 5
+
+    # Test division returns int
+    assert isinstance(Calculate(["5", "/", "5", "="]), int)
+
+    # Test division by zero
+    assert Calculate(["1", "0", "/", "0", "="]) == 0
