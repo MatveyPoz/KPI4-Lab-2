@@ -12,7 +12,10 @@
 6. Run `python -m simple_calculator`
 7. Run tests: `python -m pytest --cov=simple_calculator -q` or `python -m pytest --cov=simple_calculator --cov-report=term-missing`
 
+## ChatGPT conversation: [link](https://chatgpt.com/share/69661bbd-fd74-8000-997f-d5a778914aa9) 
+
+
 ## TODO
-- [ ]Implement Github Actions
-- [ ]Add more tests for key HandleKeyPress and Calculate function
-- [ ]Add vide odemonstration and link to ChatGPT conversation
+- [x] Implement Github Actions
+- [x] Add more tests for key HandleKeyPress and Calculate function
+- [ ] Add video demonstration

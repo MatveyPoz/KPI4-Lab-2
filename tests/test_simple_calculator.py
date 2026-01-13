@@ -67,7 +67,7 @@ def test_calculate(monkeypatch):
     # Test empty input
     assert Calculate([]) == 0
 
-    # Test invalid input with missing =
+    # Test not full statement
     assert Calculate(["1", "+", "2"]) == 2
 
     # Test invalid input
@@ -93,3 +93,7 @@ def test_calculate(monkeypatch):
 
     # Test division by zero
     assert Calculate(["1", "0", "/", "0", "="]) == 0
+
+    # Test result of division is rounded down
+    assert Calculate(["1", "0", "/", "3", "="]) == 3
+    assert Calculate(["1", "0", "/", "4", "="]) == 2
